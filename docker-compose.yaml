@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app_django:
+    build:
+      context: ./app
+    volumes:
+      - files:/app/static
+    env_file:
+      - app/.env
+    ports:
+      - "8001:8000"
+    
+  nginx:
+    build: 
+      context: ./nginx
+    volumes:
+      - files:/app/static
+    ports:
+      - "80:80"
+
+volumes:
+  files:
